@@ -6,3 +6,4 @@ mysql> create database prjtest;
 mysql> use prjtest;
 mysql> show tables;
 --------------------------------------------------
+all good
