@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import in.srikanth.exception.UomNotFoundException;
 import in.srikanth.model.Uom;
 import in.srikanth.repo.UomRepository;
 import in.srikanth.service.IUomService;
@@ -26,4 +27,20 @@ public class UomSreviceImpl implements IUomService {
 		return repo.findAll();
 	}
 
+	@Override
+	public void updateUom(Uom uom) {
+		repo.save(uom);
+	}
+
+	@Override
+	public void deleteUom(Integer id) {
+		Uom uom = getOneUom(id);
+		repo.delete(uom);
+	}
+
+	@Override
+	public Uom getOneUom(Integer id) {
+		Uom uom = repo.findById(id).orElseThrow(() -> new UomNotFoundException("Uom '" + id + "' Not exist"));
+		return uom;
+	}
 }

@@ -53,11 +53,12 @@ public class ShipmentTypeController {
 	}
 
 	@PostMapping("update")
-	public String doUpdate(@RequestParam ShipmentType shipmentType, Model model) {
+	public String doUpdate(@ModelAttribute ShipmentType shipmentType, Model model) {
 		service.updateShipmentType(shipmentType);
 		model.addAttribute("message", "Shipment Type ' " + shipmentType.getId() + " ' updated");
 		model.addAttribute("list", service.getAllShipmentTypes());
 		return "ShipmentTypeData";
 	}
+	
 
 }
