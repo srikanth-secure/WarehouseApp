@@ -2,14 +2,15 @@ package in.srikanth.model;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 public class WhUserType {
 	@Id
 	@Column(name = "wh_id_col")
-	@GeneratedValue(generator = "whusertype")
-	@SequenceGenerator(name = "whusertype", sequenceName = "whusertype_seq")
+	@GeneratedValue(generator = "whusertype", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "whusertype", sequenceName = "whusertype_seq", allocationSize = 1)
 	private Integer id;
 	@Column(name = "wh_type_col")
 	private String userType;

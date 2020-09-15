@@ -3,7 +3,9 @@ package in.srikanth.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -13,8 +15,10 @@ import lombok.Data;
 @Table(name = "uom_tab")
 public class Uom {
 
+	@SequenceGenerator(sequenceName = "UOM_ID_SEQ", name = "UOM_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(generator = "UOM_ID_SEQ", strategy = GenerationType.SEQUENCE)
+
 	@Id
-	@GeneratedValue
 	@Column(name = "uom_id_col")
 	private Integer id;
 
@@ -24,5 +28,4 @@ public class Uom {
 	private String uomModel;
 	@Column(name = "uom_description_col")
 	private String description;
-
 }

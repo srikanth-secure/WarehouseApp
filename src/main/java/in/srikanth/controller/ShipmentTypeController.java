@@ -59,6 +59,5 @@ public class ShipmentTypeController {
 		model.addAttribute("list", service.getAllShipmentTypes());
 		return "ShipmentTypeData";
 	}
-	
 
 }

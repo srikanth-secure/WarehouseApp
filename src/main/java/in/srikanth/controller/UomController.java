@@ -17,13 +17,16 @@ import in.srikanth.service.IUomService;
 @Controller
 @RequestMapping("/uom")
 public class UomController {
+	
 	@Autowired
 	private IUomService service;
 
 	// 1. show Register Page
 	@GetMapping("/register")
-	public String showReg() {
+	public String showReg(Model model) {
+		model.addAttribute("uom", new Uom());
 		return "UomRegister";
+		//return "UomRegister";
 	}
 
 	// 2. on click save
@@ -35,6 +38,7 @@ public class UomController {
 		Integer id = service.saveUom(uom);
 		String message = " Uom saved with id:" + id;
 		// sending data to UI
+	
 		model.addAttribute("message", message);
 		return "UomRegister";
 	}
