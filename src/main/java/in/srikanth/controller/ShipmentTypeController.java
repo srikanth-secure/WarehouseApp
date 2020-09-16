@@ -19,7 +19,9 @@ public class ShipmentTypeController {
 	private IShipmentTypeService service;
 
 	@GetMapping("/register")
-	public String showReg() {
+	public String showReg(Model model) {
+		// Form Backing Object
+		model.addAttribute("shipmentType", new ShipmentType());
 		return "ShipmentTypeRegister";
 	}
 
