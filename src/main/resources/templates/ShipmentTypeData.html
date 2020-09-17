@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org/">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Shipment Type Data Page</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -17,6 +17,7 @@
 			</div>
 
 			<div class="card-body">
+				<a th:href="@{/st/excel}" class="btn btn-warning"> Export to Excel</a>
 				<table class="table table-hover">
 					<tr class="bg-success text-white">
 						<th>ID</th>

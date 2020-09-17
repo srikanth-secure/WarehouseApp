@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.srikanth.model.Uom;
 import in.srikanth.service.IUomService;
+import in.srikanth.view.UomExcelView;
 
 @Controller
 @RequestMapping("/uom")
 public class UomController {
-	
+
 	@Autowired
 	private IUomService service;
 
@@ -26,7 +28,7 @@ public class UomController {
 	public String showReg(Model model) {
 		model.addAttribute("uom", new Uom());
 		return "UomRegister";
-		//return "UomRegister";
+		// return "UomRegister";
 	}
 
 	// 2. on click save
@@ -38,8 +40,9 @@ public class UomController {
 		Integer id = service.saveUom(uom);
 		String message = " Uom saved with id:" + id;
 		// sending data to UI
-	
 		model.addAttribute("message", message);
+		//reset the form data
+		model.addAttribute("uom", new Uom());
 		return "UomRegister";
 	}
 
@@ -75,5 +78,14 @@ public class UomController {
 		model.addAttribute("message", "Uom '" + uom.getId() + "' Updated");
 		model.addAttribute("list", service.getAllUoms());
 		return "UomData";
+	}
+
+	@GetMapping("/excel")
+	public ModelAndView exportToExcel() {
+		ModelAndView mav = new ModelAndView();
+		mav.setView(new UomExcelView());
+		List<Uom> list = service.getAllUoms();
+		mav.addObject("list", list);
+		return mav;
 	}
 }
