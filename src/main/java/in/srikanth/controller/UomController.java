@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import in.srikanth.model.Uom;
 import in.srikanth.service.IUomService;
 import in.srikanth.view.UomExcelView;
+import in.srikanth.view.UomPdfView;
 
 @Controller
 @RequestMapping("/uom")
@@ -41,7 +42,7 @@ public class UomController {
 		String message = " Uom saved with id:" + id;
 		// sending data to UI
 		model.addAttribute("message", message);
-		//reset the form data
+		// reset the form data
 		model.addAttribute("uom", new Uom());
 		return "UomRegister";
 	}
@@ -80,10 +81,22 @@ public class UomController {
 		return "UomData";
 	}
 
+//7. Creating Excel
 	@GetMapping("/excel")
 	public ModelAndView exportToExcel() {
 		ModelAndView mav = new ModelAndView();
+
 		mav.setView(new UomExcelView());
+		List<Uom> list = service.getAllUoms();
+		mav.addObject("list", list);
+		return mav;
+	}
+
+	// 8. create PDF
+	@GetMapping("/pdf")
+	public ModelAndView exportToPdf() {
+		ModelAndView mav = new ModelAndView();
+		mav.setView(new UomPdfView());
 		List<Uom> list = service.getAllUoms();
 		mav.addObject("list", list);
 		return mav;

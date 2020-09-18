@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import in.srikanth.model.ShipmentType;
-import in.srikanth.model.Uom;
 import in.srikanth.service.IShipmentTypeService;
 import in.srikanth.view.ShipmentTypeExcelView;
-import in.srikanth.view.UomExcelView;
+import in.srikanth.view.ShipmentTypePdfView;
 
 @Controller
 @RequestMapping("/st")
@@ -74,6 +73,15 @@ public class ShipmentTypeController {
 	public ModelAndView exportToExcel() {
 		ModelAndView mav = new ModelAndView();
 		mav.setView(new ShipmentTypeExcelView());
+		List<ShipmentType> list = service.getAllShipmentTypes();
+		mav.addObject("list", list);
+		return mav;
+	}
+
+	@GetMapping("/pdf")
+	public ModelAndView exportToPdf() {
+		ModelAndView mav = new ModelAndView();
+		mav.setView(new ShipmentTypePdfView());
 		List<ShipmentType> list = service.getAllShipmentTypes();
 		mav.addObject("list", list);
 		return mav;

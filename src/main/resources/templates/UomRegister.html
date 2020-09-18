@@ -15,57 +15,59 @@
 			</div>
 			<div class="card-body">
 				<form id="uomRegForm" th:action="@{/uom/save}" method="POST"
-					th:object="${uom}"><div class="row">
-					<div class="col-2">
-						<label>UOM TYPE</label>
+					th:object="${uom}">
+					<div class="row">
+						<div class="col-2">
+							<label>UOM TYPE</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{uomType}" class="form-control">
+								<option value="">-SELECT-</option>
+								<option value="PACKING">PACKING</option>
+								<option value="NO PACKING">NO PACKING</option>
+								<option value="NA">NA</option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="uomTypeError"></span>
+						</div>
 					</div>
-					<div class="col-5">
-						<select th:field="*{uomType}" class="form-control">
-							<option value="">-SELECT-</option>
-							<option value="PACKING">PACKING</option>
-							<option value="NO PACKING">NO PACKING</option>
-							<option value="NA">NA</option>
-						</select>
+					<div class="row">
+						<div class="col-2">
+							<label>UOM MODEL</label>
+						</div>
+						<div class="col-5">
+							<input type="text" th:field="*{uomModel}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="uomModelError"></span>
+						</div>
 					</div>
-					<div class="col-5">
-						<span id="uomTypeError"></span>
+
+					<div class="row">
+						<div class="col-2">
+							<label>DESCRIPTION</label>
+						</div>
+						<div class="col-5">
+							<textarea th:field="*{description}" class="form-control"></textarea>
+						</div>
+						<div class="col-5">
+							<span id="descriptionError"></span>
+						</div>
 					</div>
+					<input type="submit" value="ADD UOM" class="btn btn-success" />
+				</form>
 			</div>
-			<div class="row">
-				<div class="col-2">
-					<label>UOM MODEL</label>
-				</div>
-				<div class="col-5">
-					<input type="text" th:field="*{uomModel}" class="form-control" />
-				</div>
-				<div class="col-5">
-					<span id="uomModelError"></span>
-				</div>
+			<!--card body end-->
+
+			<div class="card-footer bg-info text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
 			</div>
 
-			<div class="row">
-				<div class="col-2">
-					<label>DESCRIPTION</label>
-				</div>
-				<div class="col-5">
-					<textarea th:field="*{description}" class="form-control"></textarea>
-				</div>
-				<div class="col-5">
-					<span id="descriptionError"></span>
-				</div>
-			</div>
-			<input type="submit" value="ADD UOM" class="btn btn-success" />
-			</form>
 		</div>
-		<!--card body end-->
-
-		<div class="card-footer bg-info text-white text-center"
-			th:if="${message != null}">
-			<span th:text="${message}"></span>
-		</div>
-
+		<!--card end-->
 	</div>
-	<!--card end--></div>
 
 
 
@@ -175,8 +177,6 @@
 
 						});
 	</script>
-
-
 
 </body>
 </html>
