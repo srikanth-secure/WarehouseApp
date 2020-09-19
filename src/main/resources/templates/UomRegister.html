@@ -100,7 +100,6 @@
 								}
 								return uomTypeError;
 							}
-
 							function validate_uomModel() {
 								var val = $("#uomModel").val();
 								var exp = /^[A-Z\-\s]{4,8}$/;
@@ -151,9 +150,13 @@
 							$("#uomType").change(function() {
 								validate_uomType();
 							});
-							$("#uomModel").keyup(function() {
-								validate_uomModel();
-							});
+							$("#uomModel").keyup(
+									function() {
+										$("#uomModel").val(
+												$("#uomModel").val()
+														.toUpperCase());
+										validate_uomModel();
+									});
 							$("#description").keyup(function() {
 								validate_description();
 							});

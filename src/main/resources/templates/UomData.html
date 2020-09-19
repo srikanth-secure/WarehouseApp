@@ -6,6 +6,11 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+	function deleteConfirm() {
+		return confirm("Are you sure, you want to delete ?");
+	}
+</script>
 </head>
 <body>
 	<div class="container">
@@ -18,8 +23,8 @@
 
 			<div class="card-body">
 				<a th:href="@{/uom/excel}" class="btn btn-warning"> Export to
-					Excel</a>|<a th:href="@{/uom/pdf}" class="btn btn-warning"> Export to
-					PDF</a>
+					Excel</a>|<a th:href="@{/uom/pdf}" class="btn btn-warning"> Export
+					to PDF</a>
 				<table class="table table-hover">
 					<tr class="bg-success text-white">
 						<th>ID</th>
@@ -34,7 +39,8 @@
 						<td th:text="${ob.uomModel}"></td>
 						<td th:text="${ob.description}"></td>
 						<td><a class="btn btn-danger"
-							th:href="@{/uom/delete?id={data}(data=${ob.id})}">DELETE</a> | <a
+							th:href="@{/uom/delete?id={data}(data=${ob.id})}"
+							onclick="return deleteConfirm()">DELETE</a> | <a
 							class="btn btn-info"
 							th:href="@{/uom/edit?id={data}(data=${ob.id})}">EDIT</a></td>
 					</tr>

@@ -72,18 +72,32 @@ public class ShipmentTypeController {
 	@GetMapping("/excel")
 	public ModelAndView exportToExcel() {
 		ModelAndView mav = new ModelAndView();
-		mav.setView(new ShipmentTypeExcelView());
+
 		List<ShipmentType> list = service.getAllShipmentTypes();
 		mav.addObject("list", list);
+
+		if (list == null || list.isEmpty()) {
+			mav.addObject("message", " No Data to Export");
+			mav.setViewName("ShipmentTypeData");
+		} else {
+			mav.setView(new ShipmentTypeExcelView());
+		}
 		return mav;
 	}
 
 	@GetMapping("/pdf")
 	public ModelAndView exportToPdf() {
 		ModelAndView mav = new ModelAndView();
-		mav.setView(new ShipmentTypePdfView());
+
 		List<ShipmentType> list = service.getAllShipmentTypes();
 		mav.addObject("list", list);
+
+		if (list == null || list.isEmpty()) {
+			mav.addObject("message", " No Data to Export");
+			mav.setViewName("ShipmentTypeData");
+		} else {
+			mav.setView(new ShipmentTypePdfView());
+		}
 		return mav;
 	}
 }

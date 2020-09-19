@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import in.srikanth.model.Uom;
 import in.srikanth.model.WhUserType;
 import in.srikanth.service.IWhUserType;
 
