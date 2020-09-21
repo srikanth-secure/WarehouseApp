@@ -38,7 +38,7 @@ public class UomController {
 			Model model) // send data to UI
 	{
 		// calling service
-		Integer id = service.saveUom(uom);
+		String id = service.saveUom(uom);
 		String message = " Uom saved with id:" + id;
 		// sending data to UI
 		model.addAttribute("message", message);

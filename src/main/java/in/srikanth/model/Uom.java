@@ -3,10 +3,10 @@ package in.srikanth.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
 
@@ -15,12 +15,11 @@ import lombok.Data;
 @Table(name = "uom_tab")
 public class Uom {
 
-	@SequenceGenerator(sequenceName = "UOM_ID_SEQ", name = "UOM_ID_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "UOM_ID_SEQ", strategy = GenerationType.SEQUENCE)
-
 	@Id
+	@GeneratedValue(generator = "uom")
+	@GenericGenerator(name = "uom", strategy = "in.srikanth.id.UomIdGenerator")
 	@Column(name = "uom_id_col")
-	private Integer id;
+	private String id;
 
 	@Column(name = "uom_type_col")
 	private String uomType;

@@ -39,4 +39,10 @@ public class WhUserTypeController {
 		model.addAttribute("whusertype", new WhUserType());
 		return "WhUserTypeRegister";
 	}
+	
+	@GetMapping("/all")
+	public String showAll(Model model) {
+		model.addAttribute("list", service.getAllWhUserTypes());
+		return "WhUserTypeData";
+	}
 }
