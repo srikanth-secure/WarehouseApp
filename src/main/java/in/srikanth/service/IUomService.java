@@ -5,7 +5,8 @@ import java.util.List;
 import in.srikanth.model.Uom;
 
 public interface IUomService {
-	public String saveUom(Uom uom);
+
+	public Integer saveUom(Uom uom);
 
 	public List<Uom> getAllUoms();
 
@@ -14,4 +15,6 @@ public interface IUomService {
 	public void deleteUom(Integer id);
 
 	public Uom getOneUom(Integer id);
+
+	public boolean isUomModelExist(String uomModel);
 }

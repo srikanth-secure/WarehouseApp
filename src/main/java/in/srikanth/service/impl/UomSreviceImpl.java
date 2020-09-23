@@ -17,7 +17,7 @@ public class UomSreviceImpl implements IUomService {
 	private UomRepository repo;
 
 	@Override
-	public String saveUom(Uom uom) {
+	public Integer saveUom(Uom uom) {
 		uom = repo.save(uom);
 		return uom.getId();
 	}
@@ -42,5 +42,14 @@ public class UomSreviceImpl implements IUomService {
 	public Uom getOneUom(Integer id) {
 		Uom uom = repo.findById(id).orElseThrow(() -> new UomNotFoundException("Uom '" + id + "' Not exist"));
 		return uom;
+	}
+
+	public boolean isUomModelExist(String uomModel) {
+		/*
+		 * boolean flag = true; Integer count = repo.getUomModelCount(uomModel);
+		 * if(count==0) { flag = false; // not exist } else { flag = true; //exst }
+		 * return flag;
+		 */
+		return repo.getUomModelCount(uomModel) > 0 ? true : false;
 	}
 }

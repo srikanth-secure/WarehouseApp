@@ -17,9 +17,9 @@ public class Uom {
 
 	@Id
 	@GeneratedValue(generator = "uom")
-	@GenericGenerator(name = "uom", strategy = "in.srikanth.id.UomIdGenerator")
+	// @GenericGenerator(name = "uom", strategy = "in.srikanth.id.UomIdGenerator")
 	@Column(name = "uom_id_col")
-	private String id;
+	private Integer id;
 
 	@Column(name = "uom_type_col")
 	private String uomType;

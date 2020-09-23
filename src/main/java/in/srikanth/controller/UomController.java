@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import in.srikanth.model.Uom;
@@ -38,7 +39,7 @@ public class UomController {
 			Model model) // send data to UI
 	{
 		// calling service
-		String id = service.saveUom(uom);
+		Integer id = service.saveUom(uom);
 		String message = " Uom saved with id:" + id;
 		// sending data to UI
 		model.addAttribute("message", message);
@@ -101,4 +102,14 @@ public class UomController {
 		mav.addObject("list", list);
 		return mav;
 	}
+
+	@GetMapping("/validate")
+	public @ResponseBody String validateModel(
+	@RequestParam String model)
+	{
+	String message = "";
+	if(service.isUomModelExist(model)) {
+	message = "Uom Model ' "+model+" ' already exist";
+	}
+	return message;}
 }
