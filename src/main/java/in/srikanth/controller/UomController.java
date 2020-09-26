@@ -2,6 +2,8 @@ package in.srikanth.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import in.srikanth.model.Uom;
 import in.srikanth.service.IUomService;
+import in.srikanth.util.UomUtil;
 import in.srikanth.view.UomExcelView;
 import in.srikanth.view.UomPdfView;
 
@@ -24,6 +27,12 @@ public class UomController {
 
 	@Autowired
 	private IUomService service;
+
+	@Autowired
+	private UomUtil util;
+
+	@Autowired
+	private ServletContext sc;
 
 	// 1. show Register Page
 	@GetMapping("/register")
@@ -104,12 +113,20 @@ public class UomController {
 	}
 
 	@GetMapping("/validate")
-	public @ResponseBody String validateModel(
-	@RequestParam String model)
-	{
-	String message = "";
-	if(service.isUomModelExist(model)) {
-	message = "Uom Model ' "+model+" ' already exist";
+	public @ResponseBody String validateModel(@RequestParam String model) {
+		String message = "";
+		if (service.isUomModelExist(model)) {
+			message = "Uom Model ' " + model + " ' already exist";
+		}
+		return message;
 	}
-	return message;}
+
+	// Charts
+	@GetMapping("/charts")
+	public String showCharts() {
+		List<Object[]> data = service.getUomTypeAndCount();
+		String path = sc.getRealPath("/");
+		util.generatePie(path, data);
+		return "UomCharts";
+	}
 }
