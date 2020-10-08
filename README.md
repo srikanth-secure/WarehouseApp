@@ -7,3 +7,5 @@ mysql> use prjtest;
 mysql> show tables;
 --------------------------------------------------
 all good
+------
+added Part save module
